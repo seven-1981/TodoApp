@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Hello, world</p>
         <img src='todoAppLogo192.png' className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
