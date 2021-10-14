@@ -1,0 +1,25 @@
+.InputWidget {
+    text-align: left;
+    min-height: 50px;
+    background-color: #ababab;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.InputField {
+    margin: 20px;
+    font-size: 24px;
+}
+
+.AddButton {
+    margin: 20px;
+    font-size: 24px;
+}
+
+.DoneCheckBox {
+    margin: 20px;
+    font-size: 24px;
+}
