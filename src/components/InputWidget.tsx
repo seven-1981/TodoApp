@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './InputField.css';
+import './InputWidget.css';
 
-function InputField() {
+function InputWidget() {
     const [inputText, setInputText] = useState("")
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,4 +26,4 @@ function InputField() {
     )
 }
 
-export default InputField;
+export default InputWidget;
