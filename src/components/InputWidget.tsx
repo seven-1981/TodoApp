@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import './InputWidget.css';
 
-function InputWidget() {
-    const [inputText, setInputText] = useState("")
+interface Props {
+    addButtonEvent: React.MouseEventHandler<HTMLButtonElement>
+    textChangedEvent: React.ChangeEventHandler<HTMLInputElement>
+}
+
+function InputWidget(props: Props) {
+    //const [inputText, setInputText] = useState("")
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputText(event.target.value)
+        //setInputText(event.target.value)
     }
 
-     const buttonClicked = () => {
-        console.log("Button clicked. The text is " + inputText)
-     }
 
     return (
         <div className="InputWidget">
-            <input className="InputField" type="text" onChange={handleChange} value={inputText} />
-            <button className="AddButton" onClick={buttonClicked}>
+            <input className="InputField" type="text" onChange={props.textChangedEvent} />
+            <button className="AddButton" onClick={props.addButtonEvent}>
                 Hinzufügen
             </button>
             <label>
                 Alle anzeigen
-                <input className="DoneCheckBox" type="checkbox" onChange={buttonClicked} />
+                <input className="DoneCheckBox" type="checkbox" onChange={handleChange} />
             </label>
         </div>
     )

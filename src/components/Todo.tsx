@@ -10,7 +10,10 @@ function Todo(props: Props) {
 
     return (
         <div className="Todo">
-            <label className="TodoLabel">{props.name}</label>
+            <label>
+                <input type="checkbox" checked={props.done}/>
+                {props.name}
+            </label>
         </div>
     )
 }
