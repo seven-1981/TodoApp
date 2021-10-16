@@ -1,12 +1,12 @@
 import React from "react";
 import './Todo.css';
 
-interface Props {
+export interface TodoProps {
     name: String
     done: boolean
 }
 
-function Todo(props: Props) {
+function Todo(props: TodoProps) {
 
     return (
         <div className="Todo">

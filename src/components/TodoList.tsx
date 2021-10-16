@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import './TodoList.css';
-import Todo from "./Todo";
+import Todo, {TodoProps} from "./Todo";
 
+export interface TodoListProps {
+    todos: TodoProps[]
+}
 
-function TodoList() {
+function TodoList(props: TodoListProps): JSX.Element {
 
     return (
-        <Todo name="test" done={false} />
+        <>
+            {props.todos.map(todo => (
+                <Todo name={todo.name} done={todo.done} />
+            ))}
+        </>
     )
 }
 
