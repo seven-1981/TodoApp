@@ -2,17 +2,17 @@ import React from "react";
 import './TodoList.css';
 import Todo, {TodoProps} from "./Todo";
 
-export interface TodoListProps {
+interface TodoListProps {
     todos: TodoProps[]
 }
 
-function TodoList(props: TodoListProps): JSX.Element {
+function TodoList(props: TodoListProps) {
 
     return (
         <>
-            {props.todos.map(todo => (
-                <Todo name={todo.name} done={todo.done} />
-            ))}
+            {props.todos.length ?
+                props.todos.map(todo => (<Todo name={todo.name} done={todo.done} />)) :
+                <p>Keine Todos gefunden</p>}
         </>
     )
 }

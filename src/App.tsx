@@ -3,10 +3,11 @@ import './App.css';
 import AppBar from "./components/AppBar";
 import InputField from "./components/InputWidget";
 import TodoList from "./components/TodoList";
+import {TodoProps} from "./components/Todo";
 
 function App() {
 
-    const [todos, setTodos] = useState([{name: "todo1", done:false}, {name:"todo2", done:false}] )
+    const [todos, setTodos] = useState<TodoProps[]>([])
 
     const addButtonClickedEvent = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log("Button event fired!")
