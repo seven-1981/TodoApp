@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import AppBar from "./components/AppBar";
 import InputWidget from "./components/InputWidget";
@@ -10,14 +10,20 @@ function App() {
     const [todos, setTodos] = useState<TodoProps[]>([])
     const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([])
 
+    useEffect(() => {
+        setFilteredTodos(todos)
+    }, [todos]);
+
     const addButtonClickedEvent = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Button event fired!")
+        console.log("Add Button Clicked. Text = " + inputFieldText)
+        if (inputFieldText === "") {
+            return
+        }
         setTodos(prevTodos => {
             return [{ name: inputFieldText, done: false }, ...prevTodos]
         })
-
         setInputFieldText("")
-        setFilteredTodos(todos)
+        //setFilteredTodos(todos)
     }
 
     const [inputFieldText, setInputFieldText] = useState("")
@@ -25,7 +31,9 @@ function App() {
     const inputFieldChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value
         setInputFieldText(text)
+        console.log("InputFieldChanged: " + text)
         if (text === "") {
+            console.log("Empty text.")
             setFilteredTodos(todos)
             return
         }
