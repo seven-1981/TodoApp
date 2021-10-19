@@ -15,15 +15,14 @@ function App() {
     }, [todos]);
 
     const addButtonClickedEvent = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Add Button Clicked. Text = " + inputFieldText)
         if (inputFieldText === "") {
             return
         }
         setTodos(prevTodos => {
-            return [{ name: inputFieldText, done: false }, ...prevTodos]
+            return [{ name: inputFieldText, done: false, key: 1 }, ...prevTodos]
         })
         setInputFieldText("")
-        //setFilteredTodos(todos)
+        //setFilteredTodos(todos) - doesn't work -> setState is asynchronous!
     }
 
     const [inputFieldText, setInputFieldText] = useState("")
@@ -31,16 +30,11 @@ function App() {
     const inputFieldChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value
         setInputFieldText(text)
-        console.log("InputFieldChanged: " + text)
         if (text === "") {
-            console.log("Empty text.")
             setFilteredTodos(todos)
             return
         }
         setFilteredTodos(todos.filter(todo => todo.name.includes(text)))
-        for (let i = 0; i < filteredTodos.length; i++) {
-            console.log(filteredTodos[i].name)
-        }
     }
 
     const doneCheckBoxChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
