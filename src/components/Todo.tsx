@@ -5,6 +5,7 @@ export interface TodoProps {
     name: String
     done: boolean
     key: number
+    toggleTodo: any
 }
 
 function Todo(props: TodoProps) {
@@ -21,6 +22,7 @@ function Todo(props: TodoProps) {
             setLabelClassName("LabelNormal")
             setIsDone(false)
         }
+        props.toggleTodo(props.key)
     }
 
     return (

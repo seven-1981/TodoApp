@@ -4,6 +4,7 @@ import Todo, {TodoProps} from "./Todo";
 
 interface TodoListProps {
     todos: TodoProps[]
+    toggleTodo: any
 }
 
 function TodoList(props: TodoListProps) {
@@ -11,7 +12,7 @@ function TodoList(props: TodoListProps) {
     return (
         <>
             {props.todos.length ?
-                props.todos.map(todo => (<Todo name={todo.name} done={todo.done} key={todo.key}/>)) :
+                props.todos.map(todo => (<Todo name={todo.name} done={todo.done} key={todo.key} toggleTodo={todo.toggleTodo}/>)) :
                 <p>Keine Todos gefunden</p>}
         </>
     )
