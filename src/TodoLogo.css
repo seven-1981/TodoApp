@@ -1,0 +1,19 @@
+.TodoLogo {
+    height: 100px;
+    pointer-events: none;
+}
+
+@keyframes TodoLogo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .TodoLogo {
+        animation: TodoLogo-spin infinite 20s linear;
+    }
+}

@@ -1,24 +1,17 @@
 import React from 'react';
 import './App.css';
+import './TodoBar.css'
+import './TodoLogo.css'
+import TodoBar from "./TodoBar";
+import TodoLogo from "./TodoLogo";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Hello, world</p>
-        <img src='todoAppLogo192.png' className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="App-title">
+            <TodoBar />
+            <TodoLogo />
+        </div>
     </div>
   );
 }
