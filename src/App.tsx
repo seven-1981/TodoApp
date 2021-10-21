@@ -10,16 +10,30 @@ function App() {
 
     const [todos, setTodos] = useState<TodoProps[]>([])
     const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([])
+    const [inputFieldText, setInputFieldText] = useState("")
+
+    function debugTodos(passedTodos: TodoProps[], text: string) {
+        console.log("Content of actual todos: --------" + text + "-----")
+        for (let i = 0; i < passedTodos.length; i++) {
+            let txt = "Todo " + i + "--- " + passedTodos[i].name + " // " + passedTodos[i].id.toString().slice(0, 8) + " // " + passedTodos[i].done
+            console.log(txt)
+        }
+    }
 
     useEffect(() => {
+        debugTodos(todos, "useEffect")
         setFilteredTodos(todos)
     }, [todos]);
 
-    function toggleTodo(key: number) {
+    function toggleTodo(id: number) {
+        console.log("Toggle Todo with key: " + id.toString().slice(0, 8))
         const newTodos = [...todos]
-        const todo = newTodos.find(todo => todo.key === key)
-        if (todo === undefined) return
-        todo.done = !todo.done
+        debugTodos(newTodos, "newTodos")
+        const foundTodo = newTodos.find(todo => todo.id === id)
+        console.log(foundTodo)
+        if (foundTodo === undefined) return
+        console.log("I have found " + foundTodo.name)
+        foundTodo.done = !foundTodo.done
         setTodos(newTodos)
     }
 
@@ -28,13 +42,11 @@ function App() {
             return
         }
         setTodos(prevTodos => {
-            return [{ name: inputFieldText, done: false, key: uuidV4(), toggleTodo: toggleTodo }, ...prevTodos]
+            return [{ name: inputFieldText, done: false, id: uuidV4(), toggle: toggleTodo }, ...prevTodos]
         })
         setInputFieldText("")
         //setFilteredTodos(todos) - doesn't work -> setState is asynchronous!
     }
-
-    const [inputFieldText, setInputFieldText] = useState("")
 
     const inputFieldChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value
@@ -59,7 +71,7 @@ function App() {
             doneCheckBoxChangedEvent={doneCheckBoxChangedEvent}
             inputText={inputFieldText}
         />
-        <TodoList todos={filteredTodos} toggleTodo={toggleTodo}/>
+        <TodoList todolist={filteredTodos} />
     </div>
   );
 };

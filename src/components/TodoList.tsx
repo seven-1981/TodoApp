@@ -3,16 +3,20 @@ import './TodoList.css';
 import Todo, {TodoProps} from "./Todo";
 
 interface TodoListProps {
-    todos: TodoProps[]
-    toggleTodo: any
+    todolist: TodoProps[]
 }
 
 function TodoList(props: TodoListProps) {
 
     return (
         <>
-            {props.todos.length ?
-                props.todos.map(todo => (<Todo name={todo.name} done={todo.done} key={todo.key} toggleTodo={todo.toggleTodo}/>)) :
+            {props.todolist.length ?
+                props.todolist.map(todo => (<Todo
+                    name={todo.name}
+                    done={todo.done}
+                    id={todo.id}
+                    key={todo.id}
+                    toggle={todo.toggle} />)) :
                 <p>Keine Todos gefunden</p>}
         </>
     )

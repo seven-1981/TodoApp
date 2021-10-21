@@ -4,8 +4,8 @@ import './Todo.css';
 export interface TodoProps {
     name: String
     done: boolean
-    key: number
-    toggleTodo: any
+    id: number
+    toggle: (id: number) => void
 }
 
 function Todo(props: TodoProps) {
@@ -14,7 +14,7 @@ function Todo(props: TodoProps) {
     const [labelClassName, setLabelClassName] = useState("LabelNormal")
 
     const doneCheckBoxChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.checked)
+        console.log(props.id.toString().slice(0, 8) + " has been changed")
         if (event.target.checked) {
             setLabelClassName("LabelStrikeThrough")
             setIsDone(true)
@@ -22,7 +22,7 @@ function Todo(props: TodoProps) {
             setLabelClassName("LabelNormal")
             setIsDone(false)
         }
-        props.toggleTodo(props.key)
+        props.toggle(props.id)
     }
 
     return (
