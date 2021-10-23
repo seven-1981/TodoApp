@@ -6,11 +6,12 @@ export interface TodoProps {
     done: boolean
     id: number
     toggle: (id: number) => void
+    delete: (id: number) => void
 }
 
 function Todo(props: TodoProps) {
 
-    const [isDone, setIsDone] = useState(false)
+    const [isDone, setIsDone] = useState(props.done)
     const [labelClassName, setLabelClassName] = useState("LabelNormal")
 
     const doneCheckBoxChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,13 @@ function Todo(props: TodoProps) {
             setLabelClassName("LabelNormal")
             setIsDone(false)
         }
+        //console.log(props)
         props.toggle(props.id)
+    }
+
+    const deleteButtonClickedHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(props.id.toString().slice(0, 8) + " has been deleted")
+        props.delete(props.id)
     }
 
     return (
@@ -31,6 +38,9 @@ function Todo(props: TodoProps) {
                 <input type="checkbox" checked={isDone} onChange={doneCheckBoxChangedHandler} />
                 {props.name}
             </label>
+            <button className="DeleteButton" onClick={deleteButtonClickedHandler}>
+                Löschen
+            </button>
         </div>
     )
 }

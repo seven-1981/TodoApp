@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './App.css';
 import AppBar from "./components/AppBar";
 import InputWidget from "./components/InputWidget";
@@ -11,6 +11,9 @@ function App() {
     const [todos, setTodos] = useState<TodoProps[]>([])
     const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([])
     const [inputFieldText, setInputFieldText] = useState("")
+
+    const todosRef = useRef<TodoProps[]>(todos)
+    todosRef.current = todos
 
     function debugTodos(passedTodos: TodoProps[], text: string) {
         console.log("Content of actual todos: --------" + text + "-----")
@@ -25,41 +28,56 @@ function App() {
         setFilteredTodos(todos)
     }, [todos]);
 
-    function toggleTodo(id: number) {
-        console.log("Toggle Todo with key: " + id.toString().slice(0, 8))
-        const newTodos = [...todos]
+    useEffect( () => {
+        debugTodos(filteredTodos, "useEffectFiltered")
+    }, [filteredTodos])
+
+    const toggleTodo = (passedId: number) => {
+        console.log("Toggle Todo with key: " + passedId.toString().slice(0, 8))
+        const newTodos = [...todosRef.current]
         debugTodos(newTodos, "newTodos")
-        const foundTodo = newTodos.find(todo => todo.id === id)
-        console.log(foundTodo)
+        const foundTodo = newTodos.find(todo => todo.id === passedId)
         if (foundTodo === undefined) return
         console.log("I have found " + foundTodo.name)
         foundTodo.done = !foundTodo.done
         setTodos(newTodos)
     }
 
+    const deleteTodo = (passedId: number) => {
+        console.log("Delete Todo with key: " + passedId.toString().slice(0, 8))
+        const newTodos = [...todosRef.current]
+        debugTodos(newTodos, "deleteTodos")
+        const filtTodos = newTodos.filter(todo => todo.id !== passedId)
+        if (filtTodos.length === 0) return
+        setTodos(filtTodos)
+    }
+
     const addButtonClickedEvent = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (inputFieldText === "") {
             return
         }
-        setTodos(prevTodos => {
-            return [{ name: inputFieldText, done: false, id: uuidV4(), toggle: toggleTodo }, ...prevTodos]
-        })
+        const filtTodos = todosRef.current.filter(todo => todo.name === inputFieldText)
+        if ((todosRef.current.length !== 0) && (filtTodos.length !== 0)) return
+        const newTodos = [{ name: inputFieldText, done: false, id: uuidV4(), toggle: toggleTodo, delete: deleteTodo }, ...todosRef.current]
+        setTodos(newTodos)
         setInputFieldText("")
-        //setFilteredTodos(todos) - doesn't work -> setState is asynchronous!
     }
 
     const inputFieldChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value
         setInputFieldText(text)
+        const newTodos = [...todosRef.current]
         if (text === "") {
-            setFilteredTodos(todos)
+            setFilteredTodos(newTodos)
             return
         }
-        setFilteredTodos(todos.filter(todo => todo.name.includes(text)))
+        const filtTodos = newTodos.filter(todo => todo.name.includes(text))
+        setFilteredTodos(filtTodos)
     }
 
-    const doneCheckBoxChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("Done checkbox event fired!")
+    const showAllCheckBoxChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Show all checkbox event fired!")
+
     }
 
   return (
@@ -68,7 +86,7 @@ function App() {
         <InputWidget
             addButtonClickedEvent={addButtonClickedEvent}
             inputFieldChangedEvent={inputFieldChangedEvent}
-            doneCheckBoxChangedEvent={doneCheckBoxChangedEvent}
+            showAllCheckBoxChangedEvent={showAllCheckBoxChangedEvent}
             inputText={inputFieldText}
         />
         <TodoList todolist={filteredTodos} />

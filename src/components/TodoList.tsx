@@ -16,7 +16,8 @@ function TodoList(props: TodoListProps) {
                     done={todo.done}
                     id={todo.id}
                     key={todo.id}
-                    toggle={todo.toggle} />)) :
+                    toggle={todo.toggle}
+                    delete={todo.delete} />)) :
                 <p>Keine Todos gefunden</p>}
         </>
     )

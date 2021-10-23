@@ -16,3 +16,7 @@
     text-decoration-line: line-through;
     color: lightgray;
 }
+.DeleteButton {
+    margin: 20px;
+    font-size: 24px;
+}

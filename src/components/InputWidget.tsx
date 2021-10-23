@@ -4,7 +4,7 @@ import './InputWidget.css';
 interface Props {
     addButtonClickedEvent: React.MouseEventHandler<HTMLButtonElement>
     inputFieldChangedEvent: React.ChangeEventHandler<HTMLInputElement>
-    doneCheckBoxChangedEvent: React.ChangeEventHandler<HTMLInputElement>
+    showAllCheckBoxChangedEvent: React.ChangeEventHandler<HTMLInputElement>
 
     inputText: string
 }
@@ -19,7 +19,7 @@ function InputWidget(props: Props) {
             </button>
             <label>
                 Alle anzeigen
-                <input className="DoneCheckBox" type="checkbox" onChange={props.doneCheckBoxChangedEvent} />
+                <input className="ShowAllCheckBox" type="checkbox" onChange={props.showAllCheckBoxChangedEvent} />
             </label>
         </div>
     )
