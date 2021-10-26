@@ -1,102 +1,85 @@
-import React, {useState, useEffect, useRef} from 'react';
-import './App.css';
-import AppBar from "./components/AppBar";
-import InputWidget from "./components/InputWidget";
-import TodoList from "./components/TodoList";
-import {TodoProps} from "./components/Todo";
-const { v4: uuidV4 } = require('uuid');
+import React, {ChangeEvent, useState} from 'react'
+import './App.css'
+import AppBar from './components/AppBar'
+import {InputWidget} from './components/InputWidget'
+import {TodoList} from './components/TodoList'
+import {createTodo, Todo} from './models/Todo'
 
 function App() {
 
-    const [todos, setTodos] = useState<TodoProps[]>([])
-    const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([])
+    const [todos, setTodos] = useState<Todo[]>([])
     const [inputFieldText, setInputFieldText] = useState("")
 
-    const todosRef = useRef<TodoProps[]>(todos)
-    todosRef.current = todos
+    let filteredTodos = [...todos]
 
-    function debugTodos(passedTodos: TodoProps[], text: string) {
-        console.log("Content of actual todos: --------" + text + "-----")
+    function debugTodos(passedTodos: Todo[], text: string) {
+        console.log("Content of actual todos: -----" + text + "-----")
         for (let i = 0; i < passedTodos.length; i++) {
             let txt = "Todo " + i + "--- " + passedTodos[i].name + " // " + passedTodos[i].id.toString().slice(0, 8) + " // " + passedTodos[i].done
             console.log(txt)
         }
     }
 
-    useEffect(() => {
-        debugTodos(todos, "useEffect")
-        setFilteredTodos(todos)
-    }, [todos]);
-
-    useEffect( () => {
-        debugTodos(filteredTodos, "useEffectFiltered")
-    }, [filteredTodos])
-
-    const toggleTodo = (passedId: number) => {
-        console.log("Toggle Todo with key: " + passedId.toString().slice(0, 8))
-        const newTodos = [...todosRef.current]
+    const toggleTodo = (update: Todo) => {
+        console.log("Toggle Todo with key: " + update.id.toString().slice(0, 8))
+        const newTodos = [...todos]
         debugTodos(newTodos, "newTodos")
-        const foundTodo = newTodos.find(todo => todo.id === passedId)
+        const foundTodo = newTodos.find(todo => todo.id === update.id)
         if (foundTodo === undefined) return
         console.log("I have found " + foundTodo.name)
         foundTodo.done = !foundTodo.done
         setTodos(newTodos)
     }
 
-    const deleteTodo = (passedId: number) => {
-        console.log("Delete Todo with key: " + passedId.toString().slice(0, 8))
-        const newTodos = [...todosRef.current]
+    const deleteTodo = (update: Todo) => {
+        console.log("Delete Todo with key: " + update.id.toString().slice(0, 8))
+        const newTodos = [...todos]
         debugTodos(newTodos, "deleteTodos")
-        const filtTodos = newTodos.filter(todo => todo.id !== passedId)
+        const filtTodos = newTodos.filter(todo => todo.id !== update.id)
         if (filtTodos.length === 0) return
         setTodos(filtTodos)
     }
 
-    const addButtonClickedEvent = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const addButtonClickedEvent = () => {
         if (inputFieldText === "") {
             return
         }
-        const filtTodos = todosRef.current.filter(todo => todo.name === inputFieldText)
-        if ((todosRef.current.length !== 0) && (filtTodos.length !== 0)) return
-        const newTodos = [{ name: inputFieldText, done: false, id: uuidV4(), toggle: toggleTodo, delete: deleteTodo }, ...todosRef.current]
+        const filtTodos = todos.filter(todo => todo.name === inputFieldText)
+        if ((todos.length !== 0) && (filtTodos.length !== 0)) return
+        const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)
         setInputFieldText("")
     }
 
-    const inputFieldChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputFieldChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value
         setInputFieldText(text)
-        const newTodos = [...todosRef.current]
-        if (text === "") {
-            setFilteredTodos(newTodos)
-            return
+        let newTodos = [...todos]
+        if (text !== "") {
+            newTodos = filteredTodos.filter(todo => todo.name.includes(text))
         }
-        const filtTodos = newTodos.filter(todo => todo.name.includes(text))
-        setFilteredTodos(filtTodos)
+        filteredTodos = newTodos
     }
 
-    const showAllCheckBoxChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("Show all checkbox event fired!")
-        let active = event.target.checked
-        const newTodos = [...todosRef.current]
-        if (active === true) {
-            setFilteredTodos(newTodos)
-            return
+    const showAllCheckBoxChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        let newTodos = [...todos]
+        if (!event.target.checked) {
+            newTodos = newTodos.filter(todo => todo.done === false
+            )
         }
-        const filtTodos = todosRef.current.filter(todo => todo.done === false)
-        setFilteredTodos(filtTodos)
+        filteredTodos = newTodos
     }
 
   return (
     <div className="App">
         <AppBar />
         <InputWidget
-            addButtonClickedEvent={addButtonClickedEvent}
-            inputFieldChangedEvent={inputFieldChangedEvent}
-            showAllCheckBoxChangedEvent={showAllCheckBoxChangedEvent}
+            onAddButtonClick={addButtonClickedEvent}
+            onInputFieldChange={inputFieldChangedEvent}
+            onShowAllCheckBoxChange={showAllCheckBoxChangedEvent}
             inputText={inputFieldText}
         />
-        <TodoList todolist={filteredTodos} />
+        <TodoList todos={filteredTodos} onToggleTodo={toggleTodo} onDeleteTodo={deleteTodo} />
     </div>
   );
 };

@@ -1,28 +1,25 @@
-import React from "react";
-import './InputWidget.css';
+import {ChangeEvent} from 'react'
+import './InputWidget.css'
 
 interface Props {
-    addButtonClickedEvent: React.MouseEventHandler<HTMLButtonElement>
-    inputFieldChangedEvent: React.ChangeEventHandler<HTMLInputElement>
-    showAllCheckBoxChangedEvent: React.ChangeEventHandler<HTMLInputElement>
-
     inputText: string
+    onAddButtonClick: () => void
+    onInputFieldChange: (event: ChangeEvent<HTMLInputElement>) => void
+    onShowAllCheckBoxChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-function InputWidget(props: Props) {
+export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, onShowAllCheckBoxChange }: Props) => {
 
     return (
         <div className="InputWidget">
-            <input className="InputField" type="text" onChange={props.inputFieldChangedEvent} value={props.inputText} />
-            <button className="AddButton" onClick={props.addButtonClickedEvent}>
+            <input className="InputField" type="text" onChange={onInputFieldChange} value={inputText} />
+            <button className="AddButton" onClick={onAddButtonClick}>
                 Hinzufügen
             </button>
             <label>
                 Alle anzeigen
-                <input className="ShowAllCheckBox" type="checkbox" onChange={props.showAllCheckBoxChangedEvent} />
+                <input className="ShowAllCheckBox" type="checkbox" onChange={onShowAllCheckBoxChange} />
             </label>
         </div>
     )
 }
-
-export default InputWidget;

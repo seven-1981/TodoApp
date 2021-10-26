@@ -1,26 +1,24 @@
-import React from "react";
-import './TodoList.css';
-import Todo, {TodoProps} from "./Todo";
+import React from 'react'
+import './TodoList.css'
+import {Todo} from '../models/Todo'
+import {SimpleTodo} from './SimpleTodo'
 
-interface TodoListProps {
-    todolist: TodoProps[]
+interface Props {
+    todos: Todo[]
+    onToggleTodo: (todo: Todo) => void
+    onDeleteTodo: (todo: Todo) => void
 }
 
-function TodoList(props: TodoListProps) {
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: Props) => {
+
+    const todoList = todos.map(todo => (
+            <SimpleTodo todo={todo} onToggleTodo={onToggleTodo} onDeleteTodo={onDeleteTodo} key={todo.id} />
+        )
+    )
 
     return (
-        <>
-            {props.todolist.length ?
-                props.todolist.map(todo => (<Todo
-                    name={todo.name}
-                    done={todo.done}
-                    id={todo.id}
-                    key={todo.id}
-                    toggle={todo.toggle}
-                    delete={todo.delete} />)) :
-                <p>Keine Todos gefunden</p>}
-        </>
+        <div>
+            {todos.length ? todoList : <p>Keine Todos gefunden</p>}
+        </div>
     )
 }
-
-export default TodoList;
