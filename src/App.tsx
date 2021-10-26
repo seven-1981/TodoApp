@@ -9,6 +9,7 @@ function App() {
 
     const [todos, setTodos] = useState<Todo[]>([])
     const [inputFieldText, setInputFieldText] = useState("")
+    const [showAll, setShowAll] = useState(false)
 
     let filteredTodos = [...todos]
 
@@ -52,22 +53,11 @@ function App() {
     }
 
     const inputFieldChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
-        let text = event.target.value
-        setInputFieldText(text)
-        let newTodos = [...todos]
-        if (text !== "") {
-            newTodos = filteredTodos.filter(todo => todo.name.includes(text))
-        }
-        filteredTodos = newTodos
+        setInputFieldText(event.target.value)
     }
 
     const showAllCheckBoxChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
-        let newTodos = [...todos]
-        if (!event.target.checked) {
-            newTodos = newTodos.filter(todo => todo.done === false
-            )
-        }
-        filteredTodos = newTodos
+        setShowAll(event.target.checked)
     }
 
   return (
@@ -79,9 +69,15 @@ function App() {
             onShowAllCheckBoxChange={showAllCheckBoxChangedEvent}
             inputText={inputFieldText}
         />
-        <TodoList todos={filteredTodos} onToggleTodo={toggleTodo} onDeleteTodo={deleteTodo} />
+        <TodoList
+            todos={filteredTodos}
+            onToggleTodo={toggleTodo}
+            onDeleteTodo={deleteTodo}
+            showAll={showAll}
+            filterText={inputFieldText}
+        />
     </div>
-  );
-};
+  )
+}
 
 export default App;

@@ -1,4 +1,4 @@
-import {createTodo, Todo} from '../models/Todo'
+import {Todo} from '../models/Todo'
 import './SimpleTodo.css'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo }: Props) => {
 
     const toggle = () => onToggleTodo({...todo})
-    const del = () => onDeleteTodo( {...todo})
+    const remove = () => onDeleteTodo( {...todo})
 
     return (
         <div className="SimpleTodo">
@@ -18,7 +18,7 @@ export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo }: Props) => {
                 <input type="checkbox" checked={todo.done} onChange={toggle} />
                 {todo.name}
             </label>
-            <button className="DeleteButton" onClick={del}>
+            <button className="DeleteButton" onClick={remove}>
                 Löschen
             </button>
         </div>
