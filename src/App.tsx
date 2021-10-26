@@ -77,7 +77,14 @@ function App() {
 
     const showAllCheckBoxChangedEvent = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log("Show all checkbox event fired!")
-
+        let active = event.target.checked
+        const newTodos = [...todosRef.current]
+        if (active === true) {
+            setFilteredTodos(newTodos)
+            return
+        }
+        const filtTodos = todosRef.current.filter(todo => todo.done === false)
+        setFilteredTodos(filtTodos)
     }
 
   return (
