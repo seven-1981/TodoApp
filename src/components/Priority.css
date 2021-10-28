@@ -1,0 +1,17 @@
+.Priority {
+    text-align: left;
+    min-height: 50px;
+    background-color: #ababab;
+    margin: 20px;
+    font-size: 24px;
+    font-family: "Arial", sans-serif;
+    display: inline-block;
+}
+
+.ActivePriority {
+    color: brown;
+}
+
+.InactivePriority {
+    color: aquamarine;
+}

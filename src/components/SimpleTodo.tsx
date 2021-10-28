@@ -1,5 +1,6 @@
 import {Todo} from '../models/Todo'
 import './SimpleTodo.css'
+import {Priority} from './Priority'
 
 interface Props {
     todo: Todo
@@ -14,8 +15,9 @@ export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo }: Props) => {
 
     return (
         <div className="SimpleTodo">
+            <input type="checkbox" checked={todo.done} onChange={toggle} />
+            <Priority />
             <label className={todo.done ? "LabelStrikeThrough" : "LabelNormal"}>
-                <input type="checkbox" checked={todo.done} onChange={toggle} />
                 {todo.name}
             </label>
             <button className="DeleteButton" onClick={remove}>

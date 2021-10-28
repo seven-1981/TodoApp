@@ -11,8 +11,6 @@ function App() {
     const [inputFieldText, setInputFieldText] = useState("")
     const [showAll, setShowAll] = useState(false)
 
-    let filteredTodos = [...todos]
-
     function debugTodos(passedTodos: Todo[], text: string) {
         console.log("Content of actual todos: -----" + text + "-----")
         for (let i = 0; i < passedTodos.length; i++) {
@@ -45,7 +43,7 @@ function App() {
         if (inputFieldText === "") {
             return
         }
-        const filtTodos = todos.filter(todo => todo.name === inputFieldText)
+        const filtTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
         if ((todos.length !== 0) && (filtTodos.length !== 0)) return
         const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)
@@ -70,7 +68,7 @@ function App() {
             inputText={inputFieldText}
         />
         <TodoList
-            todos={filteredTodos}
+            todos={todos}
             onToggleTodo={toggleTodo}
             onDeleteTodo={deleteTodo}
             showAll={showAll}

@@ -11,22 +11,28 @@ interface Props {
     filterText: string
 }
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterText }: Props) => {
+const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: string) => {
 
-    let filteredTodos = [...todos]
     if (!showAll) {
-        filteredTodos = filteredTodos.filter(todo => (
+        todosToFilter = todosToFilter.filter(todo => (
             todo.done === false
         ))
     }
-    
+
     if (filterText !== '') {
-        filteredTodos = filteredTodos.filter(todo => (
-            todo.name.includes(filterText)
+        todosToFilter = todosToFilter.filter(todo => (
+            todo.name.toLowerCase().includes(filterText.toLowerCase())
         ))
     }
 
-    let todoList = filteredTodos.map(todo => (
+    return todosToFilter
+}
+
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterText }: Props) => {
+
+    todos = applyFiltering(todos, showAll, filterText)
+
+    let todoList = todos.map(todo => (
             <SimpleTodo todo={todo} onToggleTodo={onToggleTodo} onDeleteTodo={onDeleteTodo} key={todo.id} />
         )
     )
