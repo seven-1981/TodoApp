@@ -1,6 +1,9 @@
 .TodoList {
     text-align: left;
     min-height: 50px;
-    background-color: #282c34;
+    background-color: darkgray;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

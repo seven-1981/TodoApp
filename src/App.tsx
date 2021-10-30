@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react'
 import './App.css'
-import AppBar from './components/AppBar'
+import {AppBar} from './components/AppBar'
 import {InputWidget} from './components/InputWidget'
 import {TodoList} from './components/TodoList'
 import {createTodo, Todo} from './models/Todo'

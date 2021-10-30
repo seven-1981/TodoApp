@@ -1,10 +1,15 @@
 .SimpleTodo {
     text-align: left;
     min-height: 50px;
-    background-color: #ababab;
-    margin: 20px;
+    background-color: gainsboro;
+    margin: 10px;
     font-size: 24px;
-    font-family: Arial, sans-serif;
+    font-family: "Times New Roman", sans-serif;
+    border: solid dimgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .LabelNormal {
@@ -14,9 +19,10 @@
 
 .LabelStrikeThrough {
     text-decoration-line: line-through;
-    color: lightgray;
+    color: dimgray;
 }
 .DeleteButton {
     margin: 20px;
+    font-family: "Times New Roman", sans-serif;
     font-size: 24px;
 }

@@ -16,9 +16,9 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
             <button className="AddButton" onClick={onAddButtonClick}>
                 Hinzufügen
             </button>
-            <label>
+            <label className="ShowAllCheckBox">
+                <input type="checkbox" onChange={onShowAllCheckBoxChange} />
                 Alle anzeigen
-                <input className="ShowAllCheckBox" type="checkbox" onChange={onShowAllCheckBoxChange} />
             </label>
         </div>
     )

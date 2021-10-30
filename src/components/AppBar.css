@@ -1,13 +1,14 @@
 .AppBar {
     text-align: left;
-    background-color: #282c34;
+    background-color: darkgray;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
+    justify-content: space-evenly;
     font-size: 48px;
-    color: white;
+    color: beige;
     margin: 20px;
+    cursor: default;
 }
 
 .App-logo {
