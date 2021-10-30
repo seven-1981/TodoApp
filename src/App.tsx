@@ -58,6 +58,16 @@ function App() {
         setShowAll(event.target.checked)
     }
 
+    const priorityClickedEvent = (todo: Todo, priority: number) => {
+        console.log("Priority of todo with id: " + todo.id.toString().slice(0, 8) + ": change priority to " + priority)
+        if (priority === 0) return
+        const newTodos = [...todos]
+        let found = newTodos.find(localTodo => localTodo.id === todo.id)
+        if (found === undefined) return
+        found.priority = priority
+        setTodos(newTodos)
+    }
+
   return (
     <div className="App">
         <AppBar />
@@ -73,6 +83,7 @@ function App() {
             onDeleteTodo={deleteTodo}
             showAll={showAll}
             filterText={inputFieldText}
+            onClickPriority={priorityClickedEvent}
         />
     </div>
   )

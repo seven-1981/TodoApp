@@ -1,30 +1,19 @@
-import {MouseEvent, useState} from 'react'
+import {MouseEvent} from 'react'
 import './Priority.css'
 
+export interface Props {
+    priority: number
+    onClick: (event: MouseEvent<HTMLLabelElement>) => void
+}
 
-export const Priority = () => {
+export const idPriority1 ="Priority_1"
+export const idPriority2 ="Priority_2"
+export const idPriority3 ="Priority_3"
 
-    const [priority, setPriority] = useState(2)
 
-    const idPriority1 ="Priority_1"
-    const idPriority2 ="Priority_2"
-    const idPriority3 ="Priority_3"
+export const Priority = ({ priority, onClick }: Props) => {
 
     const flash = '\uD83D\uDDF2'
-
-    const onClick = (event: MouseEvent<HTMLLabelElement>) => {
-        let idClicked = event.currentTarget.id
-        console.log("Priority : " + idClicked)
-
-        let priorityToSet = 1
-        if (idClicked === idPriority2) {
-            priorityToSet = 2
-        } else if (idClicked === idPriority3) {
-            priorityToSet = 3
-        }
-
-        setPriority(priorityToSet)
-    }
 
     return (
         <div className="Priority">
