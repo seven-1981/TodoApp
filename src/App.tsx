@@ -25,7 +25,6 @@ function App() {
         debugTodos(newTodos, "newTodos")
         const foundTodo = newTodos.find(todo => todo.id === update.id)
         if (foundTodo === undefined) return
-        console.log("I have found " + foundTodo.name)
         foundTodo.done = !foundTodo.done
         setTodos(newTodos)
     }
@@ -35,11 +34,10 @@ function App() {
         const newTodos = [...todos]
         debugTodos(newTodos, "deleteTodos")
         const filtTodos = newTodos.filter(todo => todo.id !== update.id)
-        if (filtTodos.length === 0) return
         setTodos(filtTodos)
     }
 
-    const addButtonClickedEvent = () => {
+    const addButtonClick = () => {
         if (inputFieldText === "") {
             return
         }
@@ -50,21 +48,21 @@ function App() {
         setInputFieldText("")
     }
 
-    const inputFieldChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputFieldText(event.target.value)
     }
 
-    const showAllCheckBoxChangedEvent = (event: ChangeEvent<HTMLInputElement>) => {
+    const showAllCheckBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
         setShowAll(event.target.checked)
     }
 
-    const priorityClickedEvent = (todo: Todo, priority: number) => {
-        console.log("Priority of todo with id: " + todo.id.toString().slice(0, 8) + ": change priority to " + priority)
-        if (priority === 0) return
+    const priorityChange = (update: Todo, newPriority: number) => {
+        console.log("Priority of todo with id " + update.id.toString().slice(0, 8) + " changed to " + newPriority.toString())
         const newTodos = [...todos]
-        let found = newTodos.find(localTodo => localTodo.id === todo.id)
-        if (found === undefined) return
-        found.priority = priority
+        const foundTodo = newTodos.find(todo => todo.id === update.id)
+        if (foundTodo === undefined) return
+        console.log(foundTodo)
+        foundTodo.priorityLevel = newPriority
         setTodos(newTodos)
     }
 
@@ -72,9 +70,9 @@ function App() {
     <div className="App">
         <AppBar />
         <InputWidget
-            onAddButtonClick={addButtonClickedEvent}
-            onInputFieldChange={inputFieldChangedEvent}
-            onShowAllCheckBoxChange={showAllCheckBoxChangedEvent}
+            onAddButtonClick={addButtonClick}
+            onInputFieldChange={inputFieldChange}
+            onShowAllCheckBoxChange={showAllCheckBoxChange}
             inputText={inputFieldText}
         />
         <TodoList
@@ -83,7 +81,7 @@ function App() {
             onDeleteTodo={deleteTodo}
             showAll={showAll}
             filterText={inputFieldText}
-            onClickPriority={priorityClickedEvent}
+            onChangePriority={priorityChange}
         />
     </div>
   )

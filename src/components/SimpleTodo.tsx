@@ -1,38 +1,40 @@
 import {Todo} from '../models/Todo'
 import './SimpleTodo.css'
-import {idPriority1, idPriority2, idPriority3, Priority} from './Priority'
+import {PriorityWidget} from './PriorityWidget'
 import {MouseEvent} from "react";
+import {Priority} from "../models/Priority";
+const { v4: uuidV4 } = require('uuid')
 
 interface Props {
     todo: Todo
     onToggleTodo: (todo: Todo) => void
     onDeleteTodo: (todo: Todo) => void
-    onClickPriority: (todo: Todo, priority: number) => void
+    onChangePriority: (update: Todo, newPriority: number) => void
 }
 
-export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo, onClickPriority }: Props) => {
+export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority }: Props) => {
+
+    const priorities: Priority[] = [
+        { priority: 0, priorityId: uuidV4().toString() },
+        { priority: 1, priorityId: uuidV4().toString() },
+        { priority: 2, priorityId: uuidV4().toString() }
+    ]
 
     const toggle = () => onToggleTodo({...todo})
     const remove = () => onDeleteTodo( {...todo})
 
-    const priority = (event: MouseEvent<HTMLLabelElement>) => {
-        let idClicked = event.currentTarget.id
-        let priorityToSet = 0
-        if (idClicked === idPriority1) {
-            priorityToSet = 1
-        } else if (idClicked === idPriority2) {
-            priorityToSet = 2
-        } else if (idClicked === idPriority3) {
-            priorityToSet = 3
-        }
-
-        onClickPriority({...todo}, priorityToSet)
+    const priorityChangedEvent = (event: MouseEvent<HTMLLabelElement>) => {
+        const idClicked = event.currentTarget.id
+        const foundPriority = priorities.find(priority => priority.priorityId === idClicked)
+        if (foundPriority === undefined) return
+        console.log("Setting the priority of todo with ID " + todo.id.toString().slice(0, 8) + " to " + foundPriority.priority)
+        onChangePriority({...todo}, foundPriority.priority)
     }
 
     return (
         <div className="SimpleTodo">
             <input type="checkbox" checked={todo.done} onChange={toggle} />
-            <Priority priority={todo.priority} onClick={priority} />
+            <PriorityWidget priorityLevel={todo.priorityLevel} priorities={priorities} onClickPriority={priorityChangedEvent} />
             <label className={todo.done ? "LabelStrikeThrough" : "LabelNormal"}>
                 {todo.name}
             </label>

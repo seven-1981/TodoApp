@@ -4,9 +4,9 @@ export interface Todo {
     name: String
     done: boolean
     id: number
-    priority: number
+    priorityLevel: number
 }
 
 export const createTodo = (name: string) => {
-    return { name: name, done: false, id: uuidV4(), priority: 2 }
+    return { name: name, done: false, id: uuidV4(), priorityLevel: 2 }
 }
