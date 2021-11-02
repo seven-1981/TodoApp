@@ -1,4 +1,3 @@
-import React from "react"
 import "./TodoList.css"
 import {Todo} from "../models/Todo"
 import {TodoWidget} from "./TodoWidget"

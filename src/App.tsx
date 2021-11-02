@@ -49,7 +49,6 @@ function App() {
         const newTodos = [...todos]
         const foundTodo = newTodos.find(todo => todo.id === update.id)
         if (foundTodo === undefined) return
-        console.log(foundTodo)
         foundTodo.priorityLevel = newPriority
         setTodos(newTodos)
     }

@@ -1,4 +1,4 @@
-import React, {MouseEvent} from "react"
+import {MouseEvent} from "react"
 import "./PriorityWidget.css"
 import {Priority} from "../models/Priority"
 const { v4: uuidV4 } = require("uuid")
