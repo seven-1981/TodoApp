@@ -33,8 +33,14 @@ export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterTex
 
     todos = applyFiltering(todos, showAll, filterText)
 
-    let todoList = todos.map(todo => (
-            <SimpleTodo todo={todo} onToggleTodo={onToggleTodo} onDeleteTodo={onDeleteTodo} key={todo.id} onChangePriority={onChangePriority}/>
+    const todoList = todos.map(todo => (
+            <SimpleTodo
+                todo={todo}
+                onToggleTodo={onToggleTodo}
+                onDeleteTodo={onDeleteTodo}
+                key={todo.id}
+                onChangePriority={onChangePriority}
+            />
         )
     )
 

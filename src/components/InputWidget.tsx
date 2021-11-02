@@ -12,12 +12,22 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
 
     return (
         <div className="InputWidget">
-            <input className="InputField" type="text" onChange={onInputFieldChange} value={inputText} />
-            <button className="AddButton" onClick={onAddButtonClick}>
+            <input
+                className="InputField"
+                type="text"
+                onChange={onInputFieldChange}
+                value={inputText}
+            />
+            <button
+                className="AddButton"
+                onClick={onAddButtonClick}>
                 Hinzufügen
             </button>
-            <label className="ShowAllCheckBox">
-                <input type="checkbox" onChange={onShowAllCheckBoxChange} />
+            <label
+                className="ShowAllCheckBox">
+                <input
+                    type="checkbox"
+                    onChange={onShowAllCheckBoxChange} />
                 Alle anzeigen
             </label>
         </div>
