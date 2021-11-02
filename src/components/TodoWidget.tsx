@@ -12,7 +12,7 @@ interface Props {
 export const TodoWidget = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority }: Props) => {
 
     const priorityChangedEvent = (newPriority: number) => {
-        onChangePriority({...todo}, newPriority)
+        onChangePriority(todo, newPriority)
     }
 
     return (
@@ -20,7 +20,7 @@ export const TodoWidget = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority 
             <input
                 type="checkbox"
                 checked={todo.done}
-                onChange={() => onToggleTodo({...todo})}
+                onChange={() => onToggleTodo(todo)}
             />
             <PriorityWidget
                 priorityLevel={todo.priorityLevel}
@@ -32,7 +32,7 @@ export const TodoWidget = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority 
             </label>
             <button
                 className="DeleteButton"
-                onClick={() => onDeleteTodo( {...todo})}>
+                onClick={() => onDeleteTodo( todo)}>
                 Löschen
             </button>
         </div>

@@ -15,7 +15,7 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
             <input className="InputField"
                 type="text"
                 onChange={onInputFieldChange}
-                value={inputText}
+                value={inputText} placeholder="Was ist zu tun ?"
             />
             <button className="AddButton"
                 onClick={onAddButtonClick}>

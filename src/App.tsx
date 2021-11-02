@@ -21,16 +21,17 @@ function App() {
 
     const deleteButtonClickEvent = (update: Todo) => {
         const newTodos = [...todos]
-        const filtTodos = newTodos.filter(todo => todo.id !== update.id)
-        setTodos(filtTodos)
+        const filterTodos = newTodos.filter(todo => todo.id !== update.id)
+        setTodos(filterTodos)
     }
 
     const addButtonClickEvent = () => {
         if (inputFieldText === "") {
             return
         }
-        const filtTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
-        if ((todos.length !== 0) && (filtTodos.length !== 0)) return
+        /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
+        const filterTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
+        if ((todos.length !== 0) && (filterTodos.length !== 0)) return
         const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)
         setInputFieldText("")
