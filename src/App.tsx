@@ -11,18 +11,18 @@ function App() {
     const [inputFieldText, setInputFieldText] = useState("")
     const [showAll, setShowAll] = useState(false)
 
-    const toggleTodoEvent = (update: Todo) => {
+    const toggleTodoEvent = (todoId: number) => {
         const newTodos = [...todos]
-        const foundTodo = newTodos.find(todo => todo.id === update.id)
+        const foundTodo = newTodos.find(todo => todo.id === todoId)
         if (foundTodo === undefined) return
-        foundTodo.done = !foundTodo.done
+        foundTodo.done = !foundTodo.done // ??? create ... copy here (change one todo)
         setTodos(newTodos)
     }
 
-    const deleteButtonClickEvent = (update: Todo) => {
+    const deleteButtonClickEvent = (todoId: number) => {
         const newTodos = [...todos]
-        const filterTodos = newTodos.filter(todo => todo.id !== update.id)
-        setTodos(filterTodos)
+        const filterTodos = newTodos.filter(todo => todo.id !== todoId)
+        setTodos(filterTodos) // ??? create ... copy here (change one todo)
     }
 
     const addButtonClickEvent = () => {
@@ -45,11 +45,11 @@ function App() {
         setShowAll(event.target.checked)
     }
 
-    const priorityChangedEvent = (update: Todo, newPriority: number) => {
+    const priorityChangedEvent = (todoId: number, newPriority: number) => {
         const newTodos = [...todos]
-        const foundTodo = newTodos.find(todo => todo.id === update.id)
+        const foundTodo = newTodos.find(todo => todo.id === todoId)
         if (foundTodo === undefined) return
-        foundTodo.priorityLevel = newPriority
+        foundTodo.priorityLevel = newPriority // ??? create ... copy here (change one todo)
         setTodos(newTodos)
     }
 

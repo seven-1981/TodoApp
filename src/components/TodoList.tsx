@@ -4,11 +4,11 @@ import {TodoWidget} from "./TodoWidget"
 
 interface Props {
     todos: Todo[]
-    onToggleTodo: (update: Todo) => void
-    onDeleteTodo: (update: Todo) => void
+    onToggleTodo: (todoId: number) => void
+    onDeleteTodo: (todoId: number) => void
     showAll: boolean
     filterText: string
-    onChangePriority: (update: Todo, newPriority: number) => void
+    onChangePriority: (todoId: number, newPriority: number) => void
 }
 
 const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: string) => {
@@ -30,16 +30,9 @@ const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: str
 
 const applySorting = (todosToSort: Todo[]) => {
 
-    const compareTodos = (todoA: Todo, todoB: Todo) => {
-        if (todoA.name.toLowerCase() < todoB.name.toLowerCase())
-            return -1
-        else if (todoA.name.toLowerCase() > todoB.name.toLowerCase())
-            return 1
-        else
-            return 0
-    }
-
-    todosToSort.sort(compareTodos)
+    todosToSort.sort((todoA: Todo, todoB: Todo) =>
+        todoA.name.toLowerCase().localeCompare(todoB.name.toLowerCase())
+    )
     return todosToSort
 }
 
