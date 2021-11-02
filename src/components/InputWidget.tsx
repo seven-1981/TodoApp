@@ -1,5 +1,5 @@
-import {ChangeEvent} from 'react'
-import './InputWidget.css'
+import {ChangeEvent} from "react"
+import "./InputWidget.css"
 
 interface Props {
     inputText: string
@@ -12,19 +12,16 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
 
     return (
         <div className="InputWidget">
-            <input
-                className="InputField"
+            <input className="InputField"
                 type="text"
                 onChange={onInputFieldChange}
                 value={inputText}
             />
-            <button
-                className="AddButton"
+            <button className="AddButton"
                 onClick={onAddButtonClick}>
                 Hinzufügen
             </button>
-            <label
-                className="ShowAllCheckBox">
+            <label className="ShowAllCheckBox">
                 <input
                     type="checkbox"
                     onChange={onShowAllCheckBoxChange} />

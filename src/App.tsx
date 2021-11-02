@@ -11,33 +11,21 @@ function App() {
     const [inputFieldText, setInputFieldText] = useState("")
     const [showAll, setShowAll] = useState(false)
 
-    function debugTodos(passedTodos: Todo[], text: string) {
-        console.log("Content of actual todos: -----" + text + "-----")
-        for (let i = 0; i < passedTodos.length; i++) {
-            let txt = "Todo " + i + "--- " + passedTodos[i].name + " // " + passedTodos[i].id.toString().slice(0, 8) + " // " + passedTodos[i].done
-            console.log(txt)
-        }
-    }
-
-    const toggleTodo = (update: Todo) => {
-        console.log("Toggle Todo with key: " + update.id.toString().slice(0, 8))
+    const toggleTodoEvent = (update: Todo) => {
         const newTodos = [...todos]
-        debugTodos(newTodos, "newTodos")
         const foundTodo = newTodos.find(todo => todo.id === update.id)
         if (foundTodo === undefined) return
         foundTodo.done = !foundTodo.done
         setTodos(newTodos)
     }
 
-    const deleteTodo = (update: Todo) => {
-        console.log("Delete Todo with key: " + update.id.toString().slice(0, 8))
+    const deleteButtonClickEvent = (update: Todo) => {
         const newTodos = [...todos]
-        debugTodos(newTodos, "deleteTodos")
         const filtTodos = newTodos.filter(todo => todo.id !== update.id)
         setTodos(filtTodos)
     }
 
-    const addButtonClick = () => {
+    const addButtonClickEvent = () => {
         if (inputFieldText === "") {
             return
         }
@@ -48,16 +36,15 @@ function App() {
         setInputFieldText("")
     }
 
-    const inputFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputFieldChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
         setInputFieldText(event.target.value)
     }
 
-    const showAllCheckBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const toggleShowAllCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
         setShowAll(event.target.checked)
     }
 
-    const priorityChange = (update: Todo, newPriority: number) => {
-        console.log("Priority of todo with id " + update.id.toString().slice(0, 8) + " changed to " + newPriority.toString())
+    const priorityChangedEvent = (update: Todo, newPriority: number) => {
         const newTodos = [...todos]
         const foundTodo = newTodos.find(todo => todo.id === update.id)
         if (foundTodo === undefined) return
@@ -70,18 +57,18 @@ function App() {
     <div className="App">
         <AppBar />
         <InputWidget
-            onAddButtonClick={addButtonClick}
-            onInputFieldChange={inputFieldChange}
-            onShowAllCheckBoxChange={showAllCheckBoxChange}
+            onAddButtonClick={addButtonClickEvent}
+            onInputFieldChange={inputFieldChangeEvent}
+            onShowAllCheckBoxChange={toggleShowAllCheckBoxEvent}
             inputText={inputFieldText}
         />
         <TodoList
             todos={todos}
-            onToggleTodo={toggleTodo}
-            onDeleteTodo={deleteTodo}
+            onToggleTodo={toggleTodoEvent}
+            onDeleteTodo={deleteButtonClickEvent}
             showAll={showAll}
             filterText={inputFieldText}
-            onChangePriority={priorityChange}
+            onChangePriority={priorityChangedEvent}
         />
     </div>
   )

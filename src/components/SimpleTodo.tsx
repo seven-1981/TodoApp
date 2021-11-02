@@ -1,11 +1,11 @@
-import {Todo} from '../models/Todo'
-import './SimpleTodo.css'
-import {PriorityWidget} from './PriorityWidget'
+import {Todo} from "../models/Todo"
+import "./SimpleTodo.css"
+import {PriorityWidget} from "./PriorityWidget"
 
 interface Props {
     todo: Todo
-    onToggleTodo: (todo: Todo) => void
-    onDeleteTodo: (todo: Todo) => void
+    onToggleTodo: (update: Todo) => void
+    onDeleteTodo: (update: Todo) => void
     onChangePriority: (update: Todo, newPriority: number) => void
 }
 

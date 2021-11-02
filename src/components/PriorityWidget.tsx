@@ -1,7 +1,7 @@
-import React, {MouseEvent} from 'react'
-import './PriorityWidget.css'
-import {Priority} from "../models/Priority";
-const { v4: uuidV4 } = require('uuid')
+import React, {MouseEvent} from "react"
+import "./PriorityWidget.css"
+import {Priority} from "../models/Priority"
+const { v4: uuidV4 } = require("uuid")
 
 export interface Props {
     priorityLevel: number
@@ -10,7 +10,7 @@ export interface Props {
 
 export const PriorityWidget = ({ priorityLevel, onClickPriority }: Props) => {
 
-    const flash = '\uD83D\uDDF2'
+    const flash = "\uD83D\uDDF2"
 
     const priorities: Priority[] = [
         { priority: 0, priorityId: uuidV4().toString() },
@@ -26,8 +26,7 @@ export const PriorityWidget = ({ priorityLevel, onClickPriority }: Props) => {
     }
 
     const prioritiesToSet = priorities.map((priority, index) => (
-            <label
-                className={priorityLevel >= index ? "ActivePriority" : "InactivePriority"}
+            <label className={priorityLevel >= index ? "ActivePriority" : "InactivePriority"}
                 id={priority.priorityId}
                 key={priority.priorityId}
                 onClick={priorityChangedEvent}>
