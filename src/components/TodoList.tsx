@@ -1,7 +1,7 @@
 import React from "react"
 import "./TodoList.css"
 import {Todo} from "../models/Todo"
-import {SimpleTodo} from "./SimpleTodo"
+import {TodoWidget} from "./TodoWidget"
 
 interface Props {
     todos: Todo[]
@@ -34,7 +34,7 @@ export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterTex
     todos = applyFiltering(todos, showAll, filterText)
 
     const todoList = todos.map(todo => (
-            <SimpleTodo
+            <TodoWidget
                 todo={todo}
                 onToggleTodo={onToggleTodo}
                 onDeleteTodo={onDeleteTodo}

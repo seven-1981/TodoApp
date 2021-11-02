@@ -1,5 +1,5 @@
 import {Todo} from "../models/Todo"
-import "./SimpleTodo.css"
+import "./TodoWidget.css"
 import {PriorityWidget} from "./PriorityWidget"
 
 interface Props {
@@ -9,14 +9,14 @@ interface Props {
     onChangePriority: (update: Todo, newPriority: number) => void
 }
 
-export const SimpleTodo = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority }: Props) => {
+export const TodoWidget = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority }: Props) => {
 
     const priorityChangedEvent = (newPriority: number) => {
         onChangePriority({...todo}, newPriority)
     }
 
     return (
-        <div className="SimpleTodo">
+        <div className="TodoWidget">
             <input
                 type="checkbox"
                 checked={todo.done}
