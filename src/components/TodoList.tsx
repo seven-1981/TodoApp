@@ -28,9 +28,25 @@ const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: str
     return todosToFilter
 }
 
+const applySorting = (todosToSort: Todo[]) => {
+
+    const compareTodos = (todoA: Todo, todoB: Todo) => {
+        if (todoA.name.toLowerCase() < todoB.name.toLowerCase())
+            return -1
+        else if (todoA.name.toLowerCase() > todoB.name.toLowerCase())
+            return 1
+        else
+            return 0
+    }
+
+    todosToSort.sort(compareTodos)
+    return todosToSort
+}
+
 export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterText, onChangePriority }: Props) => {
 
     todos = applyFiltering(todos, showAll, filterText)
+    todos = applySorting(todos)
 
     const todoList = todos.map(todo => (
             <TodoWidget
