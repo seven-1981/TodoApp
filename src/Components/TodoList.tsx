@@ -12,9 +12,7 @@ function TodoList({todos, setTodos}: TodoListProps) {
     let todoList = todos.map( todo => {
             return (
                 <Todo text={todo.text} id={todo.id} todos={todos} setTodos={setTodos} />
-            )
-        }
-    )
+            )})
 
     return (
         <div className="TodoList">

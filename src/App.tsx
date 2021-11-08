@@ -14,6 +14,7 @@ function App() {
 
     const [InputText, setInputText] = useState('')
     const [todos, setTodos] = useState<CreateTodoProps[]>([])
+    const [status, setStatus] = useState("All")
 
     return (
     <div className="App">
@@ -22,7 +23,7 @@ function App() {
             <TodoLogo />
         </div>
         <div className="Input">
-            <InputTodo inputText={InputText} setInputText={setInputText} />
+            <InputTodo status={status} setStatus={setStatus} inputText={InputText} setInputText={setInputText} />
             <SubmitButton setTodos={setTodos} todos={todos} inputText={InputText} setInputText={setInputText} />
         </div>
         <div className="TodoList">
