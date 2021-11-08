@@ -1,0 +1,11 @@
+.todo-input {
+    text-align: left;
+    height: 30px;
+    width: 300px;
+    background-color: blueviolet;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}

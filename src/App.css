@@ -4,13 +4,12 @@
 
 .App-title {
   display: flex;
+  height: 150px;
   flex-flow: inherit;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   background: #cfe0f3;
-  color: #454b50;
 }
-
 
 .App-link {
   color: #61dafb;

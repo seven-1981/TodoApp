@@ -1,6 +1,8 @@
 .TodoLogo {
     height: 100px;
+    width: 100%;
     pointer-events: none;
+    margin-top: 20%;
 }
 
 @keyframes TodoLogo-spin {
