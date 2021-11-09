@@ -7,11 +7,13 @@ interface Props {
     inputText: string
     onSetInputText: (text: string) => void
     onAddNewTodoSuccess: () => boolean
+    showAll: boolean
     onSetShowAll: (showAll: boolean) => void
+    sortByPriority: boolean
     onSetSortByPriority: (sortByPriority: boolean) => void
 }
 
-export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, onSetShowAll, onSetSortByPriority }: Props) => {
+export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, showAll, onSetShowAll, sortByPriority, onSetSortByPriority }: Props) => {
 
     const addButtonClickEvent = () => {
         if (inputText === "") return
@@ -40,11 +42,11 @@ export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, on
                 Hinzufügen
             </button>
             <label>
-                <input type="checkbox" onChange={toggleShowAllCheckBoxEvent}/>
+                <input type="checkbox" checked={showAll} onChange={toggleShowAllCheckBoxEvent}/>
                 Alle anzeigen
             </label>
             <label>
-                <input type="checkbox" onChange={toggleSortByPriorityCheckBoxEvent}/>
+                <input type="checkbox" checked={sortByPriority} onChange={toggleSortByPriorityCheckBoxEvent}/>
                 Nach Priorität sortieren
             </label>
         </div>
