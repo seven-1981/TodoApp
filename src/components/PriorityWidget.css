@@ -1,19 +1,14 @@
 .PriorityWidget {
-    text-align: left;
-    min-height: 50px;
-    background-color: gainsboro;
     margin: 20px;
-    font-size: 24px;
-    font-family: "Times New Roman", sans-serif;
-    display: flex;
+    user-select: none;
 }
 
 .ActivePriority {
-    color: dimgray;
+    color: blue;
     cursor: pointer;
 }
 
 .InactivePriority {
-    color: beige;
+    color: lightblue;
     cursor: pointer;
 }

@@ -1,10 +1,7 @@
 .TodoList {
-    text-align: left;
-    min-height: 50px;
-    background-color: darkgray;
     margin: 20px;
+    border: royalblue outset;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: 24px;
 }

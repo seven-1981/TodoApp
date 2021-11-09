@@ -1,28 +1,27 @@
 .TodoWidget {
     text-align: left;
-    min-height: 50px;
-    background-color: gainsboro;
+    overflow-wrap: break-word;
     margin: 10px;
-    font-size: 24px;
-    font-family: "Times New Roman", sans-serif;
-    border: solid dimgray;
+    border: royalblue outset;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    overflow-wrap: break-word;
+    background-color: lightskyblue;
 }
 
 .LabelNormal {
     text-decoration-line: none;
-    color: black;
     overflow: hidden;
+    color: black;
+    cursor: text;
 }
 
 .LabelStrikeThrough {
     text-decoration-line: line-through;
-    color: dimgray;
     overflow: hidden;
+    color: dimgray;
+    cursor: text;
 }
 
 .DeleteButton {

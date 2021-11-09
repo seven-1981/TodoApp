@@ -33,19 +33,17 @@ export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, on
 
     return (
         <div className="InputWidget">
-            <input className="InputField"
-                type="text"
-                onChange={inputFieldChangeEvent}
+            <input type="text" onChange={inputFieldChangeEvent}
                 value={inputText} placeholder="Was ist zu tun ?"
             />
             <button onClick={addButtonClickEvent}>
                 Hinzufügen
             </button>
-            <label className="ShowAllCheckBox">
+            <label>
                 <input type="checkbox" onChange={toggleShowAllCheckBoxEvent}/>
                 Alle anzeigen
             </label>
-            <label className="ShowAllCheckBox">
+            <label>
                 <input type="checkbox" onChange={toggleSortByPriorityCheckBoxEvent}/>
                 Nach Priorität sortieren
             </label>

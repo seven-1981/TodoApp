@@ -1,23 +1,10 @@
 .InputWidget {
+    font-size: 24px;
     text-align: left;
-    min-height: 50px;
-    background-color: darkgray;
     margin: 20px;
+    border: royalblue outset;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-}
-
-.InputField {
-    margin: 20px;
-    font-family: "Times New Roman", sans-serif;
-    font-size: 24px;
-    background-color: beige;
-    border-style: solid;
-}
-
-.ShowAllCheckBox {
-    margin: 20px;
-    font-size: 24px;
 }

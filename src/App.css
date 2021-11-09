@@ -1,10 +1,18 @@
 .App {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 24px;
   text-align: center;
-  font-family: "Times New Roman", sans-serif;
+  color: black;
+  background: linear-gradient(lightskyblue, deepskyblue);
 }
 
 button {
-  font-family: "Times New Roman", sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 24px;
+  margin: 20px;
+}
+
+input {
   font-size: 24px;
   margin: 20px;
 }
