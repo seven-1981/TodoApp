@@ -20,13 +20,12 @@ export const filterTodos = (todosToFilter: Todo[], showAll: boolean, filterText:
 export const sortTodos = (todosToSort: Todo[], sortByPriority: boolean) => {
 
     todosToSort.sort((todoA: Todo, todoB: Todo) => {
-            let todoAstring = todoA.name
-            let todoBstring = todoB.name
             if (sortByPriority) {
-                todoAstring = (1.0 / todoA.priorityLevel).toString() + todoAstring
-                todoBstring = (1.0 / todoB.priorityLevel).toString() + todoBstring
+                return todoB.priorityLevel.toString().localeCompare(todoA.priorityLevel.toString())
+                    || todoA.name.localeCompare(todoB.name)
+            } else {
+                return todoA.name.localeCompare(todoB.name)
             }
-            return todoAstring.localeCompare(todoBstring)
         }
     )
     return todosToSort
