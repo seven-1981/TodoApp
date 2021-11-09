@@ -4,12 +4,12 @@ import {TodoWidget} from "./TodoWidget"
 
 interface Props {
     todos: Todo[]
+    onSetTodos: (todos: Todo[]) => void
     onToggleTodo: (todoId: number) => void
     onDeleteTodo: (todoId: number) => void
     showAll: boolean
     sortByPriority: boolean
     filterText: string
-    onChangePriority: (todoId: number, newPriority: number) => void
 }
 
 const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: string) => {
@@ -44,7 +44,15 @@ const applySorting = (todosToSort: Todo[], sortByPriority: boolean) => {
     return todosToSort
 }
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, sortByPriority, filterText, onChangePriority }: Props) => {
+export const TodoList = ({ todos, onSetTodos, onToggleTodo, onDeleteTodo, showAll, sortByPriority, filterText }: Props) => {
+
+    const priorityChangedEvent = (todoId: number, newPriority: number) => {
+        const newTodos = [...todos]
+        const foundTodo = newTodos.find(todo => todo.id === todoId)
+        if (foundTodo === undefined) return
+        foundTodo.priorityLevel = newPriority // ??? create ... copy here (change one todo)
+        onSetTodos(newTodos)
+    }
 
     todos = applyFiltering(todos, showAll, filterText)
     todos = applySorting(todos, sortByPriority)
@@ -55,7 +63,7 @@ export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, sortByPri
                 onToggleTodo={onToggleTodo}
                 onDeleteTodo={onDeleteTodo}
                 key={todo.id}
-                onChangePriority={onChangePriority}
+                onChangePriority={priorityChangedEvent}
             />
         )
     )

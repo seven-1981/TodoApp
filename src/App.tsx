@@ -50,14 +50,6 @@ function App() {
         setSortByPriority(event.target.checked)
     }
 
-    const priorityChangedEvent = (todoId: number, newPriority: number) => {
-        const newTodos = [...todos]
-        const foundTodo = newTodos.find(todo => todo.id === todoId)
-        if (foundTodo === undefined) return
-        foundTodo.priorityLevel = newPriority // ??? create ... copy here (change one todo)
-        setTodos(newTodos)
-    }
-
   return (
     <div className="App">
         <AppBar />
@@ -70,12 +62,12 @@ function App() {
         />
         <TodoList
             todos={todos}
+            onSetTodos={setTodos}
             onToggleTodo={toggleTodoEvent}
             onDeleteTodo={deleteButtonClickEvent}
             showAll={showAll}
             sortByPriority={sortByPriority}
             filterText={inputFieldText}
-            onChangePriority={priorityChangedEvent}
         />
     </div>
   )
