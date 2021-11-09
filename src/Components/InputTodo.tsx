@@ -11,13 +11,13 @@ interface InputProps {
 function InputTodo( {inputText, setInputText, status, setStatus} : InputProps) {
 
     const inputTextHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
-        setInputText(event.target.value);
+        console.log(event.target.value)
+        setInputText(event.target.value)
     };
 
-    const statusHandler = () => {
-
-        setStatus(status)
+    const statusHandler = (event:  React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(event.target.value)
+        setStatus(event.target.value)
     }
 
     return (

@@ -9,9 +9,13 @@ interface TodoListProps {
 
 function TodoList({todos, setTodos}: TodoListProps) {
 
+    const deleteTodoWithID = (id: number) => {
+        setTodos(todos.filter(el => el.id !== id))
+    }
+
     let todoList = todos.map( todo => {
             return (
-                <Todo text={todo.text} id={todo.id} todos={todos} setTodos={setTodos} />
+                <Todo text={todo.text} id={todo.id} key={todo.id} passedDeleteHandler={deleteTodoWithID} />
             )})
 
     return (

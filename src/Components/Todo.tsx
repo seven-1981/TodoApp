@@ -9,8 +9,7 @@ export interface CreateTodoProps {
 interface TodoProps {
     text: String
     id: number
-    todos: CreateTodoProps[]
-    setTodos: React.Dispatch<React.SetStateAction<CreateTodoProps[]>>
+    passedDeleteHandler: (id: number) => void
 }
 
 const { v4: uuidV4 } = require('uuid')
@@ -19,13 +18,13 @@ export const createTodo = (text: String, done: boolean) => {
     return{ text: text, checked: done, id: uuidV4() }
 }
 
-function Todo({text ,id , todos, setTodos}: TodoProps) {
+function Todo({ text , id, passedDeleteHandler }: TodoProps) { // todos, setTodos
 
     const [checked, setChecked] = useState(false)
 
     const deleteHandler = () => {
         console.log(id)
-        setTodos(todos.filter(el => el.id !== id))
+        passedDeleteHandler(id)
     }
 
     const completeHandler = () => {

@@ -6,6 +6,7 @@ interface SubmitProps {
     setTodos: React.Dispatch<React.SetStateAction<CreateTodoProps[]>>
     inputText: string
     setInputText: React.Dispatch<React.SetStateAction<string>>
+    //setInputText: (text: string) => void
 }
 
 function SubmitButton({inputText, setInputText , todos, setTodos} : SubmitProps) {
