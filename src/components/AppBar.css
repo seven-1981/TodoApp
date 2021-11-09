@@ -1,13 +1,11 @@
 .AppBar {
     font-size: 48px;
     text-align: left;
-    user-select: none;
     margin: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-
 }
 
 .App-logo {

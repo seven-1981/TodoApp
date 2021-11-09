@@ -1,9 +1,9 @@
 .App {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 24px;
-  text-align: center;
   color: black;
   background: linear-gradient(lightskyblue, deepskyblue);
+  user-select: none;
 }
 
 button {
