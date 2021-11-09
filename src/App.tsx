@@ -10,6 +10,7 @@ function App() {
     const [todos, setTodos] = useState<Todo[]>([])
     const [inputFieldText, setInputFieldText] = useState("")
     const [showAll, setShowAll] = useState(false)
+    const [sortByPriority, setSortByPriority] = useState( false)
 
     const toggleTodoEvent = (todoId: number) => {
         const newTodos = [...todos]
@@ -45,6 +46,10 @@ function App() {
         setShowAll(event.target.checked)
     }
 
+    const toggleSortByPriorityCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        setSortByPriority(event.target.checked)
+    }
+
     const priorityChangedEvent = (todoId: number, newPriority: number) => {
         const newTodos = [...todos]
         const foundTodo = newTodos.find(todo => todo.id === todoId)
@@ -57,16 +62,18 @@ function App() {
     <div className="App">
         <AppBar />
         <InputWidget
+            inputText={inputFieldText}
             onAddButtonClick={addButtonClickEvent}
             onInputFieldChange={inputFieldChangeEvent}
             onShowAllCheckBoxChange={toggleShowAllCheckBoxEvent}
-            inputText={inputFieldText}
+            onSortByPriorityCheckBoxChange={toggleSortByPriorityCheckBoxEvent}
         />
         <TodoList
             todos={todos}
             onToggleTodo={toggleTodoEvent}
             onDeleteTodo={deleteButtonClickEvent}
             showAll={showAll}
+            sortByPriority={sortByPriority}
             filterText={inputFieldText}
             onChangePriority={priorityChangedEvent}
         />

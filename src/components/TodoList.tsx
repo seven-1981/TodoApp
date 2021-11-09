@@ -7,6 +7,7 @@ interface Props {
     onToggleTodo: (todoId: number) => void
     onDeleteTodo: (todoId: number) => void
     showAll: boolean
+    sortByPriority: boolean
     filterText: string
     onChangePriority: (todoId: number, newPriority: number) => void
 }
@@ -28,18 +29,25 @@ const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: str
     return todosToFilter
 }
 
-const applySorting = (todosToSort: Todo[]) => {
+const applySorting = (todosToSort: Todo[], sortByPriority: boolean) => {
 
-    todosToSort.sort((todoA: Todo, todoB: Todo) =>
-        todoA.name.toLowerCase().localeCompare(todoB.name.toLowerCase())
+    todosToSort.sort((todoA: Todo, todoB: Todo) => {
+            let todoAstring = todoA.name
+            let todoBstring = todoB.name
+            if (sortByPriority) {
+                todoAstring = (1 - todoA.priorityLevel).toString() + todoAstring
+                todoBstring = (1 - todoB.priorityLevel).toString() + todoBstring
+            }
+            return todoAstring.localeCompare(todoBstring)
+        }
     )
     return todosToSort
 }
 
-export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, filterText, onChangePriority }: Props) => {
+export const TodoList = ({ todos, onToggleTodo, onDeleteTodo, showAll, sortByPriority, filterText, onChangePriority }: Props) => {
 
     todos = applyFiltering(todos, showAll, filterText)
-    todos = applySorting(todos)
+    todos = applySorting(todos, sortByPriority)
 
     const todoList = todos.map(todo => (
             <TodoWidget

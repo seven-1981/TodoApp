@@ -1,7 +1,7 @@
 const { v4: uuidV4 } = require("uuid")
 
 export interface Todo {
-    name: String
+    name: string
     done: boolean
     id: number
     priorityLevel: number

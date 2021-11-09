@@ -10,16 +10,19 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    overflow-wrap: break-word;
 }
 
 .LabelNormal {
     text-decoration-line: none;
     color: black;
+    overflow: hidden;
 }
 
 .LabelStrikeThrough {
     text-decoration-line: line-through;
     color: dimgray;
+    overflow: hidden;
 }
 
 .DeleteButton {

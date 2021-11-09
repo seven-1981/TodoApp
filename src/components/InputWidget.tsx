@@ -6,9 +6,10 @@ interface Props {
     onAddButtonClick: () => void
     onInputFieldChange: (event: ChangeEvent<HTMLInputElement>) => void
     onShowAllCheckBoxChange: (event: ChangeEvent<HTMLInputElement>) => void
+    onSortByPriorityCheckBoxChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, onShowAllCheckBoxChange }: Props) => {
+export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, onShowAllCheckBoxChange, onSortByPriorityCheckBoxChange }: Props) => {
 
     return (
         <div className="InputWidget">
@@ -26,6 +27,12 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
                     type="checkbox"
                     onChange={onShowAllCheckBoxChange} />
                 Alle anzeigen
+            </label>
+            <label className="ShowAllCheckBox">
+                <input
+                    type="checkbox"
+                    onChange={onSortByPriorityCheckBoxChange} />
+                Nach Priorität sortieren
             </label>
         </div>
     )
