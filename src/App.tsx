@@ -1,9 +1,9 @@
-import React, {ChangeEvent, useState} from 'react'
-import './App.css'
-import {AppBar} from './components/AppBar'
-import {InputWidget} from './components/InputWidget'
-import {TodoList} from './components/TodoList'
-import {createTodo, Todo} from './models/Todo'
+import React, {useState} from "react"
+import "./App.css"
+import {AppBar} from "./components/AppBar"
+import {InputWidget} from "./components/InputWidget"
+import {TodoList} from "./components/TodoList"
+import {createTodo, Todo} from "./models/Todo"
 
 function App() {
 
@@ -13,9 +13,7 @@ function App() {
     const [sortByPriority, setSortByPriority] = useState( false)
 
     const addButtonClickEvent = () => {
-        if (inputFieldText === "") {
-            return
-        }
+        if (inputFieldText === "") return
         /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
         const filterTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
         if ((todos.length !== 0) && (filterTodos.length !== 0)) return
@@ -24,27 +22,15 @@ function App() {
         setInputFieldText("")
     }
 
-    const inputFieldChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
-        setInputFieldText(event.target.value)
-    }
-
-    const toggleShowAllCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
-        setShowAll(event.target.checked)
-    }
-
-    const toggleSortByPriorityCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
-        setSortByPriority(event.target.checked)
-    }
-
   return (
     <div className="App">
         <AppBar />
         <InputWidget
             inputText={inputFieldText}
+            onSetInputText={setInputFieldText}
             onAddButtonClick={addButtonClickEvent}
-            onInputFieldChange={inputFieldChangeEvent}
-            onShowAllCheckBoxChange={toggleShowAllCheckBoxEvent}
-            onSortByPriorityCheckBoxChange={toggleSortByPriorityCheckBoxEvent}
+            onSetShowAll={setShowAll}
+            onSetSortByPriority={setSortByPriority}
         />
         <TodoList
             todos={todos}

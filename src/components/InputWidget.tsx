@@ -3,19 +3,31 @@ import "./InputWidget.css"
 
 interface Props {
     inputText: string
+    onSetInputText: (text: string) => void
     onAddButtonClick: () => void
-    onInputFieldChange: (event: ChangeEvent<HTMLInputElement>) => void
-    onShowAllCheckBoxChange: (event: ChangeEvent<HTMLInputElement>) => void
-    onSortByPriorityCheckBoxChange: (event: ChangeEvent<HTMLInputElement>) => void
+    onSetShowAll: (showAll: boolean) => void
+    onSetSortByPriority: (sortByPriority: boolean) => void
 }
 
-export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, onShowAllCheckBoxChange, onSortByPriorityCheckBoxChange }: Props) => {
+export const InputWidget = ({ inputText, onSetInputText, onAddButtonClick, onSetShowAll, onSetSortByPriority }: Props) => {
+
+    const inputFieldChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        onSetInputText(event.target.value)
+    }
+
+    const toggleShowAllCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        onSetShowAll(event.target.checked)
+    }
+
+    const toggleSortByPriorityCheckBoxEvent = (event: ChangeEvent<HTMLInputElement>) => {
+        onSetSortByPriority(event.target.checked)
+    }
 
     return (
         <div className="InputWidget">
             <input className="InputField"
                 type="text"
-                onChange={onInputFieldChange}
+                onChange={inputFieldChangeEvent}
                 value={inputText} placeholder="Was ist zu tun ?"
             />
             <button className="AddButton"
@@ -25,13 +37,13 @@ export const InputWidget = ({ inputText, onAddButtonClick, onInputFieldChange, o
             <label className="ShowAllCheckBox">
                 <input
                     type="checkbox"
-                    onChange={onShowAllCheckBoxChange} />
+                    onChange={toggleShowAllCheckBoxEvent} />
                 Alle anzeigen
             </label>
             <label className="ShowAllCheckBox">
                 <input
                     type="checkbox"
-                    onChange={onSortByPriorityCheckBoxChange} />
+                    onChange={toggleSortByPriorityCheckBoxEvent} />
                 Nach Priorität sortieren
             </label>
         </div>
