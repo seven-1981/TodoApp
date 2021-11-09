@@ -9,11 +9,11 @@
 }
 
 .ActivePriority {
-    color: beige;
+    color: dimgray;
     cursor: pointer;
 }
 
 .InactivePriority {
-    color: dimgray;
+    color: beige;
     cursor: pointer;
 }

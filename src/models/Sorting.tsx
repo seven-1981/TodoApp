@@ -23,8 +23,8 @@ export const sortTodos = (todosToSort: Todo[], sortByPriority: boolean) => {
             let todoAstring = todoA.name
             let todoBstring = todoB.name
             if (sortByPriority) {
-                todoAstring = (1 - todoA.priorityLevel).toString() + todoAstring
-                todoBstring = (1 - todoB.priorityLevel).toString() + todoBstring
+                todoAstring = (1.0 / todoA.priorityLevel).toString() + todoAstring
+                todoBstring = (1.0 / todoB.priorityLevel).toString() + todoBstring
             }
             return todoAstring.localeCompare(todoBstring)
         }
