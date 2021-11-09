@@ -1,6 +1,8 @@
 import {Todo} from "../models/Todo"
 import "./TodoWidget.css"
 import {PriorityWidget} from "./PriorityWidget"
+import "../App.css"
+
 
 interface Props {
     todo: Todo
@@ -17,22 +19,15 @@ export const TodoWidget = ({ todo, onToggleTodo, onDeleteTodo, onChangePriority 
 
     return (
         <div className="TodoWidget">
-            <input
-                type="checkbox"
-                checked={todo.done}
-                onChange={() => onToggleTodo(todo.id)}
-            />
+            <input type="checkbox" checked={todo.done} onChange={() => onToggleTodo(todo.id)}/>
             <PriorityWidget
                 priorityLevel={todo.priorityLevel}
                 onClickPriority={priorityChangedEvent}
             />
-            <label
-                className={todo.done ? "LabelStrikeThrough" : "LabelNormal"}>
+            <label className={todo.done ? "LabelStrikeThrough" : "LabelNormal"}>
                 {todo.name}
             </label>
-            <button
-                className="DeleteButton"
-                onClick={() => onDeleteTodo(todo.id)}>
+            <button className="DeleteButton" onClick={() => onDeleteTodo(todo.id)}>
                 Löschen
             </button>
         </div>

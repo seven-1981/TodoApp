@@ -1,5 +1,7 @@
 import {ChangeEvent} from "react"
 import "./InputWidget.css"
+import "../App.css"
+
 
 interface Props {
     inputText: string
@@ -13,7 +15,7 @@ export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, on
 
     const addButtonClickEvent = () => {
         if (inputText === "") return
-        if (! onAddNewTodoSuccess()) return
+        if (!onAddNewTodoSuccess()) return
         onSetInputText("")
     }
 
@@ -36,20 +38,15 @@ export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, on
                 onChange={inputFieldChangeEvent}
                 value={inputText} placeholder="Was ist zu tun ?"
             />
-            <button className="AddButton"
-                onClick={addButtonClickEvent}>
+            <button onClick={addButtonClickEvent}>
                 Hinzufügen
             </button>
             <label className="ShowAllCheckBox">
-                <input
-                    type="checkbox"
-                    onChange={toggleShowAllCheckBoxEvent} />
+                <input type="checkbox" onChange={toggleShowAllCheckBoxEvent}/>
                 Alle anzeigen
             </label>
             <label className="ShowAllCheckBox">
-                <input
-                    type="checkbox"
-                    onChange={toggleSortByPriorityCheckBoxEvent} />
+                <input type="checkbox" onChange={toggleSortByPriorityCheckBoxEvent}/>
                 Nach Priorität sortieren
             </label>
         </div>

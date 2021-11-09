@@ -11,8 +11,7 @@ export interface Props {
 export const PriorityWidget = ({ priorityLevel, onClickPriority }: Props) => {
 
     const priorityChangedEvent = (event: MouseEvent<HTMLLabelElement>) => {
-        const idClicked = event.currentTarget.id
-        const foundPriority = priorities.find(priority => priority.priorityId === idClicked)
+        const foundPriority = priorities.find(priority => priority.priorityId === event.currentTarget.id)
         if (foundPriority === undefined) return
         onClickPriority(foundPriority.priority)
     }

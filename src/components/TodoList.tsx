@@ -3,6 +3,7 @@ import {Todo} from "../models/Todo"
 import {TodoWidget} from "./TodoWidget"
 import {filterTodos, sortTodos} from "../models/Sorting"
 
+
 interface Props {
     todos: Todo[]
     onSetTodos: (todos: Todo[]) => void
