@@ -12,20 +12,6 @@ function App() {
     const [showAll, setShowAll] = useState(false)
     const [sortByPriority, setSortByPriority] = useState( false)
 
-    const toggleTodoEvent = (todoId: number) => {
-        const newTodos = [...todos]
-        const foundTodo = newTodos.find(todo => todo.id === todoId)
-        if (foundTodo === undefined) return
-        foundTodo.done = !foundTodo.done // ??? create ... copy here (change one todo)
-        setTodos(newTodos)
-    }
-
-    const deleteButtonClickEvent = (todoId: number) => {
-        const newTodos = [...todos]
-        const filterTodos = newTodos.filter(todo => todo.id !== todoId)
-        setTodos(filterTodos) // ??? create ... copy here (change one todo)
-    }
-
     const addButtonClickEvent = () => {
         if (inputFieldText === "") {
             return
@@ -63,8 +49,6 @@ function App() {
         <TodoList
             todos={todos}
             onSetTodos={setTodos}
-            onToggleTodo={toggleTodoEvent}
-            onDeleteTodo={deleteButtonClickEvent}
             showAll={showAll}
             sortByPriority={sortByPriority}
             filterText={inputFieldText}
