@@ -4,12 +4,18 @@ import "./InputWidget.css"
 interface Props {
     inputText: string
     onSetInputText: (text: string) => void
-    onAddButtonClick: () => void
+    onAddNewTodoSuccess: () => boolean
     onSetShowAll: (showAll: boolean) => void
     onSetSortByPriority: (sortByPriority: boolean) => void
 }
 
-export const InputWidget = ({ inputText, onSetInputText, onAddButtonClick, onSetShowAll, onSetSortByPriority }: Props) => {
+export const InputWidget = ({ inputText, onSetInputText, onAddNewTodoSuccess, onSetShowAll, onSetSortByPriority }: Props) => {
+
+    const addButtonClickEvent = () => {
+        if (inputText === "") return
+        if (! onAddNewTodoSuccess()) return
+        onSetInputText("")
+    }
 
     const inputFieldChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
         onSetInputText(event.target.value)
@@ -31,7 +37,7 @@ export const InputWidget = ({ inputText, onSetInputText, onAddButtonClick, onSet
                 value={inputText} placeholder="Was ist zu tun ?"
             />
             <button className="AddButton"
-                onClick={onAddButtonClick}>
+                onClick={addButtonClickEvent}>
                 Hinzufügen
             </button>
             <label className="ShowAllCheckBox">

@@ -1,6 +1,7 @@
 import "./TodoList.css"
 import {Todo} from "../models/Todo"
 import {TodoWidget} from "./TodoWidget"
+import {filterTodos, sortTodos} from "../models/Sorting"
 
 interface Props {
     todos: Todo[]
@@ -8,38 +9,6 @@ interface Props {
     showAll: boolean
     sortByPriority: boolean
     filterText: string
-}
-
-const applyFiltering = (todosToFilter: Todo[], showAll: boolean, filterText: string) => {
-
-    if (!showAll) {
-        todosToFilter = todosToFilter.filter(todo => (
-            todo.done === false
-        ))
-    }
-
-    if (filterText !== "") {
-        todosToFilter = todosToFilter.filter(todo => (
-            todo.name.toLowerCase().includes(filterText.toLowerCase())
-        ))
-    }
-
-    return todosToFilter
-}
-
-const applySorting = (todosToSort: Todo[], sortByPriority: boolean) => {
-
-    todosToSort.sort((todoA: Todo, todoB: Todo) => {
-            let todoAstring = todoA.name
-            let todoBstring = todoB.name
-            if (sortByPriority) {
-                todoAstring = (1 - todoA.priorityLevel).toString() + todoAstring
-                todoBstring = (1 - todoB.priorityLevel).toString() + todoBstring
-            }
-            return todoAstring.localeCompare(todoBstring)
-        }
-    )
-    return todosToSort
 }
 
 export const TodoList = ({ todos, onSetTodos, showAll, sortByPriority, filterText }: Props) => {
@@ -66,8 +35,8 @@ export const TodoList = ({ todos, onSetTodos, showAll, sortByPriority, filterTex
         onSetTodos(newTodos)
     }
 
-    todos = applyFiltering(todos, showAll, filterText)
-    todos = applySorting(todos, sortByPriority)
+    todos = filterTodos(todos, showAll, filterText)
+    todos = sortTodos(todos, sortByPriority)
 
     const todoList = todos.map(todo => (
             <TodoWidget

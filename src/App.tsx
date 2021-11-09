@@ -12,14 +12,13 @@ function App() {
     const [showAll, setShowAll] = useState(false)
     const [sortByPriority, setSortByPriority] = useState( false)
 
-    const addButtonClickEvent = () => {
-        if (inputFieldText === "") return
+    const checkAddNewTodo = (): boolean => {
         /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
-        const filterTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
-        if ((todos.length !== 0) && (filterTodos.length !== 0)) return
+        const alreadyMatchingTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
+        if ((todos.length !== 0) && (alreadyMatchingTodos.length !== 0)) return false
         const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)
-        setInputFieldText("")
+        return true
     }
 
   return (
@@ -28,7 +27,7 @@ function App() {
         <InputWidget
             inputText={inputFieldText}
             onSetInputText={setInputFieldText}
-            onAddButtonClick={addButtonClickEvent}
+            onAddNewTodoSuccess={checkAddNewTodo}
             onSetShowAll={setShowAll}
             onSetSortByPriority={setSortByPriority}
         />
