@@ -24,8 +24,8 @@ export const TodoList = ({ todos, onSetTodos, showAll, sortByPriority, filterTex
 
     const deleteButtonClickEvent = (todoId: number) => {
         const newTodos = [...todos]
-        const filterTodos = newTodos.filter(todo => todo.id !== todoId)
-        onSetTodos(filterTodos)
+        const remainingTodos = newTodos.filter(todo => todo.id !== todoId)
+        onSetTodos(remainingTodos)
     }
 
     const priorityChangedEvent = (todoId: number, newPriority: number) => {
