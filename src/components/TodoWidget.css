@@ -15,6 +15,7 @@
     overflow: hidden;
     color: black;
     cursor: text;
+    user-select: text;
 }
 
 .LabelStrikeThrough {
@@ -22,6 +23,7 @@
     overflow: hidden;
     color: dimgray;
     cursor: text;
+    user-select: text;
 }
 
 .DeleteButton {
