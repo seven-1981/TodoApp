@@ -4,7 +4,7 @@ import {AppBar} from "./components/AppBar"
 import {InputWidget} from "./components/InputWidget"
 import {TodoList} from "./components/TodoList"
 import {createTodo, Todo} from "./models/Todo"
-import {filterTodosInputText} from "./models/Sorting"
+import {filterTodosInputText} from "./models/Algorithms"
 
 
 const LOCAL_STORAGE_TODO = "todoApp.todos"

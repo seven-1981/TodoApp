@@ -1,7 +1,7 @@
 import "./TodoList.css"
 import {Todo} from "../models/Todo"
 import {TodoWidget} from "./TodoWidget"
-import {filterTodosShowAll, filterTodosInputText, sortTodos} from "../models/Sorting"
+import {filterTodosShowAll, filterTodosInputText, sortTodos} from "../models/Algorithms"
 
 
 interface Props {
@@ -37,9 +37,8 @@ export const TodoList = ({ todos, onSetTodos, showAll, sortByPriority, filterTex
     }
 
     let newTodos = [...todos]
-    const trimmedText = filterText.trim()
     newTodos = filterTodosShowAll(newTodos, showAll)
-    newTodos = filterTodosInputText(newTodos, trimmedText)
+    newTodos = filterTodosInputText(newTodos, filterText)
     newTodos = sortTodos(newTodos, sortByPriority)
 
     const todoList = newTodos.map(todo => (
