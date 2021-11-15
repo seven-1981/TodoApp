@@ -1,0 +1,31 @@
+.TodoWidget {
+    text-align: left;
+    overflow-wrap: break-word;
+    margin: 10px;
+    border: royalblue outset;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: lightskyblue;
+}
+
+.LabelNormal {
+    text-decoration-line: none;
+    overflow: hidden;
+    color: black;
+    cursor: text;
+    user-select: text;
+}
+
+.LabelStrikeThrough {
+    text-decoration-line: line-through;
+    overflow: hidden;
+    color: dimgray;
+    cursor: text;
+    user-select: text;
+}
+
+.DeleteButton {
+    margin: 20px 20px 20px auto;
+}

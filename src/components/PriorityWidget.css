@@ -1,0 +1,13 @@
+.PriorityWidget {
+    margin: 20px;
+}
+
+.ActivePriority {
+    color: blue;
+    cursor: pointer;
+}
+
+.InactivePriority {
+    color: lightblue;
+    cursor: pointer;
+}
