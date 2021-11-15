@@ -51,7 +51,7 @@ function App() {
 
     const checkAddNewTodo = (): boolean => {
         /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
-        const alreadyMatchingTodos = todos.filter(todo => todo.name.toLowerCase() === inputFieldText.toLowerCase())
+        const alreadyMatchingTodos = todos.filter(todo => todo.name.trim().toLowerCase() === inputFieldText.trim().toLowerCase())
         if ((todos.length !== 0) && (alreadyMatchingTodos.length !== 0)) return false
         const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)

@@ -10,7 +10,7 @@ export const filterTodos = (todosToFilter: Todo[], showAll: boolean, filterText:
 
     if (filterText !== "") {
         todosToFilter = todosToFilter.filter(todo => (
-            todo.name.toLowerCase().includes(filterText.toLowerCase())
+            todo.name.trim().toLowerCase().includes(filterText.trim().toLowerCase())
         ))
     }
 
