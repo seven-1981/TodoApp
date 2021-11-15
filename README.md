@@ -1,3 +1,15 @@
+# TodoApp by Michael Bos (MBOS) and Daniel Schlatter (DASH)
+
+Todo App according to Requirements of project for Web Engineering 1 MAS-SE
+
+## Additional features
+
+* Sorting of Todos in alphabetical order (default setting).
+* Sorting of Todos according to priority, if "Nach Priorität sortieren" is checked. Sorting of Todos of same priority in alphabetical order.
+* Local storage for Todos, input field text and checkboxes (no data loss after page refresh).
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
