@@ -4,7 +4,7 @@ import {AppBar} from "./components/AppBar"
 import {InputWidget} from "./components/InputWidget"
 import {TodoList} from "./components/TodoList"
 import {createTodo, Todo} from "./models/Todo"
-import {prepareString} from "./models/Sorting"
+import {filterTodosInputText} from "./models/Sorting"
 
 
 const LOCAL_STORAGE_TODO = "todoApp.todos"
@@ -51,8 +51,7 @@ function App() {
 
 
     const checkAddNewTodo = (): boolean => {
-        /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
-        const alreadyMatchingTodos = todos.filter(todo => prepareString(todo.name) === prepareString(inputFieldText))
+        const alreadyMatchingTodos = filterTodosInputText(todos, inputFieldText)
         if ((todos.length !== 0) && (alreadyMatchingTodos.length !== 0)) return false
         const newTodos = [createTodo(inputFieldText), ...todos]
         setTodos(newTodos)

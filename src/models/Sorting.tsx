@@ -1,11 +1,7 @@
 import {Todo} from "./Todo"
 
 
-export const prepareString = (stringToPrepare: string) => {
-    return stringToPrepare.trim().toLowerCase()
-}
-
-export const filterTodos = (todosToFilter: Todo[], showAll: boolean, filterText: string) => {
+export const filterTodosShowAll = (todosToFilter: Todo[], showAll: boolean) => {
 
     if (!showAll) {
         todosToFilter = todosToFilter.filter(todo => (
@@ -13,9 +9,16 @@ export const filterTodos = (todosToFilter: Todo[], showAll: boolean, filterText:
         ))
     }
 
+    return todosToFilter
+}
+
+export const filterTodosInputText = (todosToFilter: Todo[], filterText: string) => {
+
     if (filterText !== "") {
+        const trimmedText = filterText.trim()
         todosToFilter = todosToFilter.filter(todo => (
-            prepareString(todo.name).includes(prepareString(filterText))
+            /* We convert the text to lowercase here, to prevent Todos that differ only in capitalisation */
+            todo.name.toLowerCase().includes(trimmedText.toLowerCase())
         ))
     }
 
@@ -27,9 +30,9 @@ export const sortTodos = (todosToSort: Todo[], sortByPriority: boolean) => {
     todosToSort.sort((todoA: Todo, todoB: Todo) => {
             if (sortByPriority) {
                 return todoB.priorityLevel.toString().localeCompare(todoA.priorityLevel.toString())
-                    || prepareString(todoA.name).localeCompare(prepareString(todoB.name))
+                    || todoA.name.localeCompare(todoB.name)
             } else {
-                return prepareString(todoA.name).localeCompare(prepareString(todoB.name))
+                return todoA.name.localeCompare(todoB.name)
             }
         }
     )
