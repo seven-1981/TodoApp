@@ -52,7 +52,7 @@ function App() {
 
     const checkAddNewTodo = (): boolean => {
         const verifiedTodoText = checkDuplicateTodos(todos, inputFieldText)
-        if (verifiedTodoText.localeCompare("") === 0) return false
+        if (verifiedTodoText === "") return false
         const newTodos = [createTodo(verifiedTodoText), ...todos]
         setTodos(newTodos)
         return true

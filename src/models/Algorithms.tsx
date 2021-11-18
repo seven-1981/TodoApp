@@ -15,7 +15,7 @@ export const filterTodosShowAll = (todosToFilter: Todo[], showAll: boolean) => {
 export const filterTodosInputText = (todosToFilter: Todo[], filterText: string) => {
 
     const trimmedText = filterText.trim()
-    if (trimmedText.localeCompare("") === 0)
+    if (trimmedText === "")
         return todosToFilter
 
     todosToFilter = todosToFilter.filter(todo => (
@@ -28,11 +28,11 @@ export const filterTodosInputText = (todosToFilter: Todo[], filterText: string) 
 export const checkDuplicateTodos = (todosToFilter: Todo[], filterText: string) => {
 
     const trimmedText = filterText.trim()
-    if (trimmedText.localeCompare("") === 0)
+    if (trimmedText === "")
         return ""
 
     const foundTodos = todosToFilter.find(todo =>
-        todo.name.toLowerCase().localeCompare(trimmedText.toLowerCase()) === 0
+        todo.name.toLowerCase() === trimmedText.toLowerCase()
     )
 
     return (foundTodos === undefined) ? trimmedText : ""
