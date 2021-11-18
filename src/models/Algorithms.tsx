@@ -28,15 +28,14 @@ export const filterTodosInputText = (todosToFilter: Todo[], filterText: string) 
 export const checkDuplicateTodos = (todosToFilter: Todo[], filterText: string) => {
 
     const trimmedText = filterText.trim()
-    if (trimmedText !== "") {
-        todosToFilter = todosToFilter.filter(todo =>
-            (todo.name.toLowerCase().localeCompare(trimmedText.toLowerCase())) === 0)
-    }
 
-    if (todosToFilter.length === 0)
-        return trimmedText
-    else
+    const foundTodos = todosToFilter.find(todo =>
+        todo.name.toLowerCase().localeCompare(trimmedText.toLowerCase()) === 0
+    )
+
+    if ((foundTodos !== undefined) || (trimmedText.localeCompare("") === 0))
         return ""
+   return trimmedText
 }
 
 export const sortTodos = (todosToSort: Todo[], sortByPriority: boolean) => {
