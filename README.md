@@ -4,6 +4,7 @@ Todo App according to Requirements of project for Web Engineering 1 MAS-SE
 
 ## Additional features
 
+* No duplicate Todos possible. Leading and trailing whitespaces are ignored.
 * Sorting of Todos in alphabetical order (default setting).
 * Sorting of Todos according to priority, if "Nach Priorität sortieren" is checked. Sorting of Todos of same priority in alphabetical order.
 * Local storage for Todos, input field text and checkboxes (no data loss after page refresh).
