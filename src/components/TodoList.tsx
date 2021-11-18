@@ -36,12 +36,11 @@ export const TodoList = ({ todos, onSetTodos, showAll, sortByPriority, filterTex
         onSetTodos(newTodos)
     }
 
-    let newTodos = [...todos]
-    newTodos = filterTodosShowAll(newTodos, showAll)
-    newTodos = filterTodosInputText(newTodos, filterText)
-    newTodos = sortTodos(newTodos, sortByPriority)
+    todos = filterTodosShowAll(todos, showAll)
+    todos = filterTodosInputText(todos, filterText)
+    todos = sortTodos(todos, sortByPriority)
 
-    const todoList = newTodos.map(todo => (
+    const todoList = todos.map(todo => (
             <TodoWidget
                 todo={todo}
                 onToggleTodo={toggleTodoEvent}
