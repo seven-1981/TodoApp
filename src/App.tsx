@@ -4,7 +4,7 @@ import {AppBar} from "./components/AppBar"
 import {InputWidget} from "./components/InputWidget"
 import {TodoList} from "./components/TodoList"
 import {createTodo, Todo} from "./models/Todo"
-import {filterTodosInputText} from "./models/Algorithms"
+import {checkDuplicateTodos} from "./models/Algorithms"
 
 
 const LOCAL_STORAGE_TODO = "todoApp.todos"
@@ -51,9 +51,9 @@ function App() {
 
 
     const checkAddNewTodo = (): boolean => {
-        const alreadyMatchingTodos = filterTodosInputText(todos, inputFieldText)
-        if ((todos.length !== 0) && (alreadyMatchingTodos.length !== 0)) return false
-        const newTodos = [createTodo(inputFieldText), ...todos]
+        const verifiedTodoText = checkDuplicateTodos(todos, inputFieldText)
+        if ((todos.length !== 0) && (verifiedTodoText.localeCompare("") === 0)) return false
+        const newTodos = [createTodo(verifiedTodoText), ...todos]
         setTodos(newTodos)
         return true
     }
